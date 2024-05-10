@@ -8,7 +8,12 @@ export default function PokemonCard({ data }: PokemonCardType) {
   return (
     <article className="card">
       <figure>
-        <img src={data?.sprites?.front_default} alt={data?.name} />
+        <img
+          width="100px"
+          height="100px"
+          src={data?.sprites?.front_default}
+          alt={data?.name}
+        />
       </figure>
       <figcaption>
         <h4>{data?.name}</h4>

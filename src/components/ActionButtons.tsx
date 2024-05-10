@@ -5,13 +5,13 @@ type ActionButtonsType = {
 export default function ActionButtons({ setId }: ActionButtonsType) {
   function handleNext() {
     setId((prev) => {
-      if (prev === 700) return prev;
+      if (prev === 1025) return 1;
       return ++prev;
     });
   }
   function handlePrev() {
     setId((prev) => {
-      if (prev === 1) return prev;
+      if (prev === 1) return 1025;
       return --prev;
     });
   }
