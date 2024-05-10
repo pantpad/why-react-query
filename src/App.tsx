@@ -7,15 +7,20 @@ import PokemonCard from "./components/PokemonCard";
 
 function App() {
   const [pokemon, setPokemon] = useState<PokeAPI.Pokemon | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
   const [id, setId] = useState(1);
 
   useEffect(() => {
     setPokemon(null);
 
     async function fetchPokemon() {
+      setIsLoading(true);
+
       const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
       const data = await response.json();
       setPokemon(data);
+
+      setIsLoading(false);
     }
 
     fetchPokemon();
