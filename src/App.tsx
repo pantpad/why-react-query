@@ -5,39 +5,36 @@ const pokemonAPI = "https://pokeapi.co/api/v2/pokemon/";
 
 function App() {
   const [pokemon, setPokemon] = useState("");
-  const [currentPokemon, setCurrentPokemon] = useState(1);
+  const [id, setId] = useState(1);
 
   function handleNext() {
-    setCurrentPokemon((prev) => {
+    setId((prev) => {
       if (prev === 700) return prev;
       return ++prev;
     });
   }
   function handlePrev() {
-    setCurrentPokemon((prev) => {
+    setId((prev) => {
       if (prev === 1) return prev;
       return --prev;
     });
   }
 
   useEffect(() => {
-    fetch(`${pokemonAPI}${currentPokemon}`)
+    fetch(`${pokemonAPI}${id}`)
       .then((response) => {
         return response.json();
       })
       .then((resp) => {
         setPokemon(resp.sprites["front_default"]);
       });
-  }, [currentPokemon]);
+  }, [id]);
 
   return (
     <>
       <h1>Why react query?</h1>
       <article>
-        <img
-          src={`${pokemon ? pokemon : ""}`}
-          alt={`pokemon n-${currentPokemon}`}
-        />
+        <img src={`${pokemon ? pokemon : ""}`} alt={`pokemon n-${id}`} />
         <div className="actions">
           <button onClick={handlePrev}>prev</button>
           <button onClick={handleNext}>next</button>
