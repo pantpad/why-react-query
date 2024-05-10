@@ -10,6 +10,8 @@ function App() {
   const [id, setId] = useState(1);
 
   useEffect(() => {
+    setPokemon(null);
+
     async function fetchPokemon() {
       const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
       const data = await response.json();
