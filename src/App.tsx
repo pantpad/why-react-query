@@ -9,7 +9,7 @@ function App() {
 
   function handleNext() {
     setCurrentPokemon((prev) => {
-      if (prev === 30) return prev;
+      if (prev === 700) return prev;
       return ++prev;
     });
   }
