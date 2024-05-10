@@ -2,20 +2,18 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import ActionButtons from "./components/ActionButtons";
 
-const pokemonAPI = "https://pokeapi.co/api/v2/pokemon/";
-
 function App() {
   const [pokemon, setPokemon] = useState("");
   const [id, setId] = useState(1);
 
   useEffect(() => {
-    fetch(`${pokemonAPI}${id}`)
-      .then((response) => {
-        return response.json();
-      })
-      .then((resp) => {
-        setPokemon(resp.sprites["front_default"]);
-      });
+    async function fetchPokemon() {
+      const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
+      const data = await response.json();
+      setPokemon(data.sprites["front_default"]);
+    }
+
+    fetchPokemon();
   }, [id]);
 
   return (
