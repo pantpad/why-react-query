@@ -1,7 +1,7 @@
 import { PokeAPI } from "pokeapi-types";
 
 type PokemonCardType = {
-  data: PokeAPI.Pokemon | null;
+  data: PokeAPI.Pokemon;
   isLoading: boolean;
 };
 

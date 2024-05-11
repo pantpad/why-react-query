@@ -1,17 +1,23 @@
 import "./App.css";
 
+import { PokeAPI } from "pokeapi-types";
+
 import { useState } from "react";
+import useFetch from "./hooks/useFetch";
 
 const endpoint = "https://pokeapi.co/api/v2/pokemon";
 
 import ActionButtons from "./components/ActionButtons";
 import PokemonCard from "./components/PokemonCard";
 import PokemonError from "./components/PokemonError";
-import useFetch from "./hooks/useFetch";
 
 function App() {
   const [id, setId] = useState(1);
-  const { data: pokemon, isLoading, error } = useFetch(endpoint + "/" + id);
+  const {
+    data: pokemon,
+    isLoading,
+    error,
+  } = useFetch<PokeAPI.Pokemon>(endpoint + "/" + id, {} as PokeAPI.Pokemon);
 
   return (
     <>

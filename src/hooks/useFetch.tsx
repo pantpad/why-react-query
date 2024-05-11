@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 
-export default function useFetch(endpoint: string) {
-  const [data, setData] = useState<any>();
+export default function useFetch<Data>(endpoint: string, initialData: Data) {
+  const [data, setData] = useState<Data>(initialData);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -11,7 +11,7 @@ export default function useFetch(endpoint: string) {
     controllerRef.current?.abort();
     controllerRef.current = new AbortController();
 
-    setData(null);
+    setData({} as Data);
     setIsLoading(true);
 
     async function fetchData() {
