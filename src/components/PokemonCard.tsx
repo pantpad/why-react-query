@@ -2,9 +2,12 @@ import { PokeAPI } from "pokeapi-types";
 
 type PokemonCardType = {
   data: PokeAPI.Pokemon | null;
+  isLoading: boolean;
 };
 
-export default function PokemonCard({ data }: PokemonCardType) {
+export default function PokemonCard({ data, isLoading }: PokemonCardType) {
+  if (isLoading) return <article className="card"></article>;
+
   return (
     <article className="card">
       <figure>

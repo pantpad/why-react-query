@@ -11,9 +11,8 @@ function App() {
   const [id, setId] = useState(1);
 
   useEffect(() => {
-    setPokemon(null);
-
     async function fetchPokemon() {
+      setPokemon(null);
       setIsLoading(true);
 
       const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
@@ -29,7 +28,7 @@ function App() {
   return (
     <>
       <h1>Why react query?</h1>
-      <PokemonCard data={pokemon} />
+      <PokemonCard isLoading={isLoading} data={pokemon} />
       <ActionButtons setId={setId} />
     </>
   );
