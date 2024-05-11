@@ -6,9 +6,11 @@ import ActionButtons from "./components/ActionButtons";
 import PokemonCard from "./components/PokemonCard";
 
 function App() {
-  const [pokemon, setPokemon] = useState<PokeAPI.Pokemon | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
   const [id, setId] = useState(1);
+
+  const [pokemon, setPokemon] = useState<PokeAPI.Pokemon | null>(null);
+  const [error, setError] = useState();
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     async function fetchPokemon() {
