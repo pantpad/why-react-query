@@ -4,22 +4,31 @@ import "./App.css";
 
 import ActionButtons from "./components/ActionButtons";
 import PokemonCard from "./components/PokemonCard";
+import PokemonError from "./components/PokemonError";
 
 function App() {
   const [id, setId] = useState(1);
 
   const [pokemon, setPokemon] = useState<PokeAPI.Pokemon | null>(null);
-  const [error, setError] = useState();
+  const [error, setError] = useState<any>();
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     async function fetchPokemon() {
-      setPokemon(null);
       setIsLoading(true);
+      try {
+        setPokemon(null);
+        setError(false);
+        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
 
-      const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
-      const data = await response.json();
-      setPokemon(data);
+        if (!response.ok) {
+          throw new Error("Error getting pokemon");
+        }
+        const data = await response.json();
+        setPokemon(data);
+      } catch (error) {
+        setError(error);
+      }
 
       setIsLoading(false);
     }
@@ -30,7 +39,11 @@ function App() {
   return (
     <>
       <h1>Why react query?</h1>
-      <PokemonCard isLoading={isLoading} data={pokemon} />
+      {error ? (
+        <PokemonError />
+      ) : (
+        <PokemonCard isLoading={isLoading} data={pokemon} />
+      )}
       <ActionButtons setId={setId} />
     </>
   );
