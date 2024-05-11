@@ -1,15 +1,17 @@
 import "./App.css";
 
 import { useState } from "react";
-import { useFetchPokemon } from "./hooks/useFetchPokemon";
+
+const endpoint = "https://pokeapi.co/api/v2/pokemon";
 
 import ActionButtons from "./components/ActionButtons";
 import PokemonCard from "./components/PokemonCard";
 import PokemonError from "./components/PokemonError";
+import useFetch from "./hooks/useFetch";
 
 function App() {
   const [id, setId] = useState(1);
-  const { pokemon, isLoading, error } = useFetchPokemon(id);
+  const { data: pokemon, isLoading, error } = useFetch(endpoint + "/" + id);
 
   return (
     <>
