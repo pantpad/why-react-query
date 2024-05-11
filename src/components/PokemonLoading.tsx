@@ -1,3 +1,3 @@
 export default function PokemonLoading() {
-  return <article className="card"></article>;
+  return <article className="card">loading...</article>;
 }
