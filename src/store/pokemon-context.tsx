@@ -1,6 +1,7 @@
 import { createContext } from "react";
+import { PokeAPI } from "pokeapi-types";
 
-const PokemonContext = createContext({});
+const PokemonContext = createContext({ pokemon: {} as PokeAPI.Pokemon });
 
 export default function PokemonContextProvider({ children }) {
   const pokemonContextStore = {};
