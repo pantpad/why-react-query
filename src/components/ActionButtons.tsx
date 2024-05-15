@@ -1,20 +1,8 @@
-type ActionButtonsType = {
-  setId: React.Dispatch<React.SetStateAction<number>>;
-};
+import { useContext } from "react";
+import { PokemonContext } from "../context/pokemon-context";
 
-export default function ActionButtons({ setId }: ActionButtonsType) {
-  function handleNext() {
-    setId((prev) => {
-      if (prev === 1025) return 1;
-      return ++prev;
-    });
-  }
-  function handlePrev() {
-    setId((prev) => {
-      if (prev === 1) return 1025;
-      return --prev;
-    });
-  }
+export default function ActionButtons() {
+  const { handleNext, handlePrev } = useContext(PokemonContext);
 
   return (
     <div className="actions">

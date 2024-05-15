@@ -1,21 +1,15 @@
-import { PokeAPI } from "pokeapi-types";
-
-import useFetch from "../hooks/useFetch";
-
-const endpoint = "https://pokeapi.co/api/v2/pokemon";
-
 import PokemonError from "./PokemonError";
 import PokemonLoading from "./PokemonLoading";
 import PokemonCard from "./PokemonCard";
 
-export default function Pokemon({ id }: { id: number }) {
-  const { data, isLoading, error } = useFetch<PokeAPI.Pokemon>(
-    endpoint + "/" + id,
-    {} as PokeAPI.Pokemon
-  );
+import { useContext } from "react";
+import { PokemonContext } from "../context/pokemon-context";
+
+export default function Pokemon() {
+  const { pokemon, error, isLoading } = useContext(PokemonContext);
 
   if (error) return <PokemonError />;
   if (isLoading) return <PokemonLoading />;
 
-  return <PokemonCard data={data} />;
+  return <PokemonCard data={pokemon} />;
 }
