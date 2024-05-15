@@ -1,8 +1,12 @@
-import { JSX, createContext, useState } from "react";
 import { PokeAPI } from "pokeapi-types";
 
+import { JSX, createContext, useState } from "react";
+
+import useFetch from "../hooks/useFetch";
+const endpoint = "https://pokeapi.co/api/v2/pokemon";
+
 export const PokemonContext = createContext({
-  pokemon: false,
+  pokemon: {} as PokeAPI.Pokemon,
   togglePokemon: () => {},
 });
 
@@ -11,14 +15,11 @@ export default function PokemonContextProvider({
 }: {
   children: JSX.Element;
 }) {
-  const [pokemon, setPokemon] = useState(false);
-
-  function togglePokemon() {
-    setPokemon((prev) => !prev);
-  }
+  const [id, setId] = useState(0);
+  const { data, isLoading, error } = useFetch(`${endpoint}/${id}`);
 
   const pokemonContextStore = {
-    pokemon: pokemon,
+    pokemon: data,
     togglePokemon: togglePokemon,
   };
 
