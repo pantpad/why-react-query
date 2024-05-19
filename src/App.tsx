@@ -1,18 +1,14 @@
 import "./App.css";
-
-import { useState } from "react";
-
-import ActionButtons from "./components/ActionButtons";
-import Pokemon from "./components/Pokemon";
+import PokemonCard from "./components/PokemonCard";
 
 function App() {
-  const [id, setId] = useState(1);
-
   return (
     <>
       <h1>Why react query?</h1>
-      <Pokemon id={id} />
-      <ActionButtons setId={setId} />
+      <main className="pokemon-container">
+        <PokemonCard />
+        <PokemonCard />
+      </main>
     </>
   );
 }

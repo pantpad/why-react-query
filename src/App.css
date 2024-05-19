@@ -65,3 +65,12 @@ article {
   background-repeat: no-repeat;
   border: none;
 }
+
+.pokemon-container {
+  display: flex;
+}
+
+.pokemon-card-container {
+  display: flex;
+  flex-direction: column;
+}
