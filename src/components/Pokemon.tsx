@@ -1,6 +1,6 @@
 import { PokeAPI } from "pokeapi-types";
 
-import useFetch from "../hooks/useFetch";
+import { useFetch } from "../context/fetch-context";
 
 const endpoint = "https://pokeapi.co/api/v2/pokemon";
 
